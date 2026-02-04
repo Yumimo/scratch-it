@@ -16,5 +16,8 @@ public class VFXManager : MonoBehaviour
     {
         winVfx.gameObject.SetActive(arg0);
         loseVfx.gameObject.SetActive(!arg0);
+        
+        var _index = arg0 ? 1 : 2;
+        AudioManager.Instance.PlaySfx(_index);
     }
 }

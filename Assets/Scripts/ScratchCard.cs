@@ -89,6 +89,7 @@ public class ScratchCard : MonoBehaviour
         _mask.transform.SetParent(this.transform); 
         _mask.enabled = true;
         CheckProgress(pos);
+        AudioManager.Instance.PlaySfx(0);
     }
 
     private void GenerateCheckpoints()
