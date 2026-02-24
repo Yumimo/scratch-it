@@ -1,11 +1,12 @@
 using UnityEngine;
 using UnityEngine.Events;
-using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private GameObject winSprite;
-    [SerializeField] private GameObject loseSprite;
+    public APIManager apiManager;
+    
+    [SerializeField] private SpriteRenderer result;
+    // [SerializeField] private GameObject loseSprite;
 
     [Range(0,1)]
     [SerializeField] private float winProbability;
@@ -15,12 +16,20 @@ public class GameManager : MonoBehaviour
     public UnityEvent WinEvent;
     public UnityEvent LoseEvent;
     
-    private bool gameResult = false;
-    private void Start()
+    private bool gameResult = true;
+
+    private void Awake()
     {
-        gameResult = Random.value > winProbability;
-        var _result = gameResult ? winSprite : loseSprite;
-        _result.SetActive(true);
+        apiManager.OnGetUserData.AddListener(SetResult);
+    }
+
+    private void SetResult(UserData arg0)
+    {
+        gameResult = arg0.reward.isWin;
+        StartCoroutine(arg0.reward.LoadSprite(x =>
+        {
+            result.sprite = x;
+        }));
     }
 
     public void GameResult()

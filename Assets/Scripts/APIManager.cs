@@ -2,25 +2,33 @@ using System;
 using System.Collections;
 using System.Text;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Networking;
 
 public partial class APIManager : MonoBehaviour
 {
     public string gameId ;
+
+    public string debugEmail;
     //Routes
     private const string baseUrl = "https://msys-games-cms-ws.multisyscorp.io";
     private string gameUrl => $"{baseUrl}/pub/game/{gameId}";
     private string emailUrl => $"{baseUrl}/pub/game/{gameId}/play";
     
     //API DATA
-    private GameData gameData;
-    private UserData userData;
+    public GameData gameData;
+    public UserData userData;
+    
+    // Unity Event
+    public UnityEvent<UserData> OnGetUserData;
     private void Start()
     {
         StartCoroutine(GetRequest(gameUrl, x =>
         {
             gameData = JsonUtility.FromJson<GameData>(x);
         }));
+        
+        Login(debugEmail);
     }
 
     public void Login(string _email)
@@ -29,9 +37,11 @@ public partial class APIManager : MonoBehaviour
         {
             email = _email
         });
+        Debug.Log(json);
         StartCoroutine(PostRequest(emailUrl, json, x =>
         {
             userData = JsonUtility.FromJson<UserData>(x);
+            OnGetUserData?.Invoke(userData);
         }));
     }
 

@@ -274,7 +274,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &356253888
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -596,8 +596,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fdc611adde5bed44916f6458f6750fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
-  winSprite: {fileID: 1233335221}
-  loseSprite: {fileID: 1836398810}
+  apiManager: {fileID: 1014074448}
+  result: {fileID: 1233335223}
   winProbability: 0.5
   ResultEvent:
     m_PersistentCalls:
@@ -676,7 +676,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5db3130389e684c729253336217d71c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::APIManager
-  gameId: 'GAME-RF7MPM '
+  gameId: GAME-RF7MPM
+  debugEmail: 11@multisyscorp.com
+  gameData:
+    game:
+      code: 
+      name: 
+      type: 
+      rewards: []
+      meta:
+        logo: 
+    existingPlay:
+      email: 
+      result:
+        photo: 
+        name: 
+        isWin: 0
+      clainCode: 
+      isClaimed: 0
+  userData:
+    alreadyPlayed: 0
+    reward:
+      photo: 
+      name: 
+      isWin: 0
+    clainCode: 
+  OnGetUserData:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &1014074449
 Transform:
   m_ObjectHideFlags: 0
@@ -941,9 +968,9 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1233335221 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: -9214009184325856917, guid: 216df0d33506adf418f283672c532314, type: 3}
+--- !u!212 &1233335223 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 5228487205192997721, guid: 216df0d33506adf418f283672c532314, type: 3}
   m_PrefabInstance: {fileID: 2084939736}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1342125706
@@ -963,7 +990,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1342125707
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1392,7 +1419,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1699134402
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1593,11 +1620,6 @@ Transform:
   - {fileID: 1360096873}
   m_Father: {fileID: 2045855496}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1836398810 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: -4432647257378040969, guid: 216df0d33506adf418f283672c532314, type: 3}
-  m_PrefabInstance: {fileID: 2084939736}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2045855495
 GameObject:
   m_ObjectHideFlags: 0
@@ -1656,8 +1678,12 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -9214009184325856917, guid: 216df0d33506adf418f283672c532314, type: 3}
+      propertyPath: m_Name
+      value: Result
+      objectReference: {fileID: 0}
+    - target: {fileID: -9214009184325856917, guid: 216df0d33506adf418f283672c532314, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8653719598885068355, guid: 216df0d33506adf418f283672c532314, type: 3}
       propertyPath: m_Name
@@ -1764,7 +1790,8 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: -4432647257378040969, guid: 216df0d33506adf418f283672c532314, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 6044318349560691524, guid: 216df0d33506adf418f283672c532314, type: 3}
