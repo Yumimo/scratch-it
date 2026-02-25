@@ -28,7 +28,7 @@ public partial class APIManager : MonoBehaviour
             gameData = JsonUtility.FromJson<GameData>(x);
         }));
         
-        Login(debugEmail);
+        //Login(debugEmail);
     }
 
     public void Login(string _email)
